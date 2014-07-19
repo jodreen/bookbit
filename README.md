@@ -1,4 +1,4 @@
-== README
+#README
 
 An application to keep track of how much you read. Compete/get motivated by connecting with friends.
 
