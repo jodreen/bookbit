@@ -1,4 +1,5 @@
 Bookbit::Application.routes.draw do
+  devise_for :users
   root "pages#home" #root_path
 
   get "about" => "pages#about" #this line creates about_path
