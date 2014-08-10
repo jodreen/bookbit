@@ -1,0 +1,27 @@
+<h1>Listing hexes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hexes.each do |hex| %>
+      <tr>
+        <td><%= hex.description %></td>
+        <td><%= link_to 'Show', hex %></td>
+        <td><%= link_to 'Edit', edit_hex_path(hex) %></td>
+        <td><%= link_to 'Destroy', hex, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hex', new_hex_path %>
