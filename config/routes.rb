@@ -1,5 +1,5 @@
 Bookbit::Application.routes.draw do
-  resources :pins
+  resources :hexes
 
   devise_for :users
   root "pages#home" #root_path
