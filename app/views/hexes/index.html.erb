@@ -4,24 +4,29 @@
   <thead>
     <tr>
       <th>Description</th>
+      <th>User</th>
       <th></th>
       <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  </tr>
+</thead>
 
-  <tbody>
+<tbody>
     <% @hexes.each do |hex| %>
-      <tr>
-        <td><%= hex.description %></td>
-        <td><%= link_to 'Show', hex %></td>
-        <td><%= link_to 'Edit', edit_hex_path(hex) %></td>
-        <td><%= link_to 'Destroy', hex, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+    <tr>
+      <td><%= hex.description %></td>
+      <td><%= hex.user.email %></td>
+      <td><%= link_to 'Show', hex %></td>
+      <% if hex.user == current_user %>
+      <td><%= link_to 'Edit', edit_hex_path(hex) %></td>
+      <td><%= link_to 'Destroy', hex, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+  </tr>
+  <% end %>
+</tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Hex', new_hex_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Hex', new_hex_path %>
+<% end %>

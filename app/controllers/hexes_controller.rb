@@ -1,5 +1,7 @@
 class HexesController < ApplicationController
   before_action :set_hex, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   #Create = new and create
   #Read = show (ReadAll = index)
@@ -20,7 +22,7 @@ class HexesController < ApplicationController
   # GET /hexes/new
   # Action for button of "Create Pin"
   def new
-    @hex = Hex.new
+    @hex = current_user.hexes.build
   end
 
   # GET /hexes/1/edit
@@ -30,7 +32,7 @@ class HexesController < ApplicationController
   # POST /hexes
   # POST /hexes.json
   def create
-    @hex = Hex.new(hex_params)
+    @hex = current_user.hexes.build(hex_params)
 
     if @hex.save
       redirect_to @hex, notice: 'Hex was successfully created.'
@@ -60,6 +62,11 @@ class HexesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_hex
       @hex = Hex.find(params[:id])
+    end
+
+    def correct_user
+      @hex = current_user.hexes.find_by(id: params[:id])
+      redirect_to hexes_path if @hex.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
