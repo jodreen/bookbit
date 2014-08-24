@@ -71,6 +71,6 @@ class HexesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hex_params
-      params.require(:hex).permit(:description)
+      params.require(:hex).permit(:description, :image)
     end
   end

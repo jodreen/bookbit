@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Description</th>
       <th>User</th>
       <th></th>
@@ -13,6 +14,7 @@
 <tbody>
     <% @hexes.each do |hex| %>
     <tr>
+      <td><%= image_tag hex.image.url(:medium) %></td>
       <td><%= hex.description %></td>
       <td><%= hex.user.email %></td>
       <td><%= link_to 'Show', hex %></td>
