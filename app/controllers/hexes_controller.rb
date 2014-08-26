@@ -11,7 +11,7 @@ class HexesController < ApplicationController
   # GET /hexes
   # GET /hexes.json
   def index
-    @hexes = Hex.all.order("created_at DESC")
+    @hexes = Hex.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
   end
 
   # GET /hexes/1
