@@ -2,7 +2,7 @@ Bookbit::Application.routes.draw do
   resources :hexes
 
   devise_for :users
-  root "pages#home" #root_path
+  root "hexes#index" #root_path
 
   get "about" => "pages#about" #this line creates about_path
   # The priority is based upon order of creation: first created -> highest priority.

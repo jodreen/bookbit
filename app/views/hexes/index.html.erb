@@ -1,16 +1,19 @@
-<div id="hexes" class="transitions-enabled">
-  <% @hexes.each do |hex| %>
-    <div class="box panel panel-default">
-      <%= image_tag hex.image.url(:medium) %>
-      <div class="panel-body">
-        <%= hex.description %>
-        <%= hex.user.email %>
-        <%= link_to 'Show', hex %>
-        <% if hex.user == current_user %>
-          <%= link_to 'Edit', edit_hex_path(hex) %>
-          <%= link_to 'Destroy', hex, method: :delete, data: { confirm: ' Are you sure?' } %>
-        <% end %>
+<%= render 'pages/home' unless user_signed_in? %>
+  <div id="hexes" class="transitions-enabled">
+    <% @hexes.each do |hex| %>
+      <div class="box panel panel-default">
+        <%= link_to image_tag(hex.image.url(:medium)), hex
+        %>
+        <div class="panel-body">
+          <%= hex.description %> </br>
+          <strong><%= hex.user.email %></strong>
+          <% if hex.user == current_user %>
+          <div class="actions">
+            <%= link_to 'Edit', edit_hex_path(hex) %>
+            <%= link_to 'Destroy', hex, method: :delete, data: { confirm: ' Are you sure?' } %>
+          </div>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
