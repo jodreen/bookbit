@@ -1,34 +1,16 @@
-<h1>Listing hexes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Description</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-  </tr>
-</thead>
-
-<tbody>
-    <% @hexes.each do |hex| %>
-    <tr>
-      <td><%= image_tag hex.image.url(:medium) %></td>
-      <td><%= hex.description %></td>
-      <td><%= hex.user.email %></td>
-      <td><%= link_to 'Show', hex %></td>
-      <% if hex.user == current_user %>
-      <td><%= link_to 'Edit', edit_hex_path(hex) %></td>
-      <td><%= link_to 'Destroy', hex, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-  </tr>
+<div id="hexes" class="transitions-enabled">
+  <% @hexes.each do |hex| %>
+    <div class="box panel panel-default">
+      <%= image_tag hex.image.url(:medium) %>
+      <div class="panel-body">
+        <%= hex.description %>
+        <%= hex.user.email %>
+        <%= link_to 'Show', hex %>
+        <% if hex.user == current_user %>
+          <%= link_to 'Edit', edit_hex_path(hex) %>
+          <%= link_to 'Destroy', hex, method: :delete, data: { confirm: ' Are you sure?' } %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</tbody>
-</table>
-
-<br>
-
-<% if user_signed_in? %>
-  <%= link_to 'New Hex', new_hex_path %>
-<% end %>
+</div>

@@ -1,4 +1,4 @@
-<%= form_for(@hex) do |f| %>
+<%= form_for @hex, html: {multipart: true} do |f| %>
   <% if @hex.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@hex.errors.count, "error") %> prohibited this hex from being saved:</h2>
