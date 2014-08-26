@@ -11,7 +11,7 @@ class HexesController < ApplicationController
   # GET /hexes
   # GET /hexes.json
   def index
-    @hexes = Hex.all
+    @hexes = Hex.all.order("created_at DESC")
   end
 
   # GET /hexes/1

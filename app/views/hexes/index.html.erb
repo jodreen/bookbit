@@ -1,19 +1,36 @@
 <%= render 'pages/home' unless user_signed_in? %>
-  <div id="hexes" class="transitions-enabled">
-    <% @hexes.each do |hex| %>
-      <div class="box panel panel-default">
-        <%= link_to image_tag(hex.image.url(:medium)), hex
-        %>
-        <div class="panel-body">
-          <%= hex.description %> </br>
-          <strong><%= hex.user.email %></strong>
-          <% if hex.user == current_user %>
-          <div class="actions">
-            <%= link_to 'Edit', edit_hex_path(hex) %>
-            <%= link_to 'Destroy', hex, method: :delete, data: { confirm: ' Are you sure?' } %>
-          </div>
-          <% end %>
+<% if user_signed_in? %>
+<div id="hexes" class="transitions-enabled">
+  <div class="box panel panel-default">
+    <div class="panel-body">
+      <%= link_to new_hex_path do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Hex
+      <% end %>
+    </div>
+  </div>
+  <% @hexes.each do |hex| %>
+  <% if hex.user == current_user %>
+  <div class="box panel panel-default">
+    <%= link_to image_tag(hex.image.url(:medium)), hex
+    %>
+    <div class="panel-body container-fluid">
+      <div class="row">
+        <div class="col-xs-8">
+          <%= hex.description %>
+        </div>
+        <div class="col-xs-4 pull-right actions">
+            <%= link_to edit_hex_path(hex) do %>
+            <span class="glyphicon glyphicon-edit"></span>
+            <% end %>
+            <%= link_to hex, method: :delete, data: { confirm: ' Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
+  <% end %>
+  <% end %>
+</div>
+<% end %>
