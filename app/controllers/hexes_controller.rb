@@ -33,7 +33,6 @@ class HexesController < ApplicationController
   # POST /hexes.json
   def create
     @hex = current_user.hexes.build(hex_params)
-
     if @hex.save
       redirect_to @hex, notice: 'Hex was successfully created.'
     else
@@ -71,6 +70,6 @@ class HexesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hex_params
-      params.require(:hex).permit(:description, :image)
+      params.require(:hex).permit(:hexcode)
     end
   end

@@ -1,5 +1,5 @@
 class Hex < ActiveRecord::Base
 	belongs_to :user
 
-	has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+	validates :hexcode, format: { with: /\A[a-fA-F0-9]{6}\z/, on: :create, message: "not a valid hex code." }
 end

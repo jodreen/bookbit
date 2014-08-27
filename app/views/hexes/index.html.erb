@@ -12,12 +12,12 @@
   <% @hexes.each do |hex| %>
   <% if hex.user == current_user %>
   <div class="box panel panel-default">
-    <%= link_to image_tag(hex.image.url(:medium)), hex
-    %>
+    <div class="colorBox" style="background-color: #<%= hex.hexcode%>">
+    </div>
     <div class="panel-body container-fluid">
       <div class="row">
         <div class="col-xs-8">
-          <%= hex.description %>
+          <%= hex.hexcode %>
         </div>
         <div class="col-xs-4 pull-right actions">
           <%= link_to edit_hex_path(hex) do %>
@@ -30,11 +30,11 @@
       </div>
     </div>
   </div>
-  <% end %>
-  <% end %>
 </div>
+  <% end %>
+  <% end %>
 
-<div class="center">
-  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
-</div>
-<% end %>
+  <div class="center">
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+  </div>
+  <% end %>

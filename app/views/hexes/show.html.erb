@@ -4,9 +4,8 @@
 	<div class="col-md-offset-2 col-md-8">
 		<div class="panel panel-default">
 			<div class="panel-heading center">
-			<%= image_tag @hex.image.url(:medium) %>
 			<div class="panel-body">
-			<p><%= @hex.description %></p>
+			<p><%= @hex.hexcode %></p>
 			<p><strong><%= @hex.user.email if @hex.user%></strong></p>
 			<% if @hex.user == current_user %>
 				<%= link_to edit_hex_path(@hex) do %>
