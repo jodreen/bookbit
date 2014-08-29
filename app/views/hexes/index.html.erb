@@ -1,6 +1,5 @@
 <%= render 'pages/home' unless user_signed_in? %>
 <% if user_signed_in? %>
-<div id="hexes" class="transitions-enabled">
   <div class="box panel panel-default">
     <div class="panel-body">
       <%= link_to new_hex_path do %>
@@ -9,12 +8,14 @@
       <% end %>
     </div>
   </div>
+
+<div id="hexes" class="transitions-enabled">
   <% @hexes.each do |hex| %>
   <% if hex.user == current_user %>
   <div class="box panel panel-default">
-    <div class="colorBox" style="background-color: #<%= hex.hexcode%>">
+    <div class="colorBox" style="background-color: #<%=hex.hexcode%>">
     </div>
-    <div class="panel-body container-fluid">
+    <div class="panel-body">
       <div class="row">
         <div class="col-xs-8">
           <%= hex.hexcode %>
@@ -30,9 +31,10 @@
       </div>
     </div>
   </div>
+  <% end %>
+  <% end %>
 </div>
-  <% end %>
-  <% end %>
+
 
   <div class="center">
     <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>

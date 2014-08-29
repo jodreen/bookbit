@@ -1,17 +1,18 @@
 <%= link_to 'Back', hexes_path %>
 
 <div class="row">
-	<div class="col-md-offset-2 col-md-8">
-		<div class="panel panel-default">
-			<div class="panel-heading center">
+	<div class="col-md-offset-5 col-md-2">
+		<div class=" box panel panel-default">
+			<div class="panel-heading colorBox" style="background-color: #<%=@hex.hexcode%>">
+			</div>
 			<div class="panel-body">
-			<p><%= @hex.hexcode %></p>
-			<p><strong><%= @hex.user.email if @hex.user%></strong></p>
-			<% if @hex.user == current_user %>
+				<p><%= @hex.hexcode %></p>
+				<% if @hex.user == current_user %>
 				<%= link_to edit_hex_path(@hex) do %>
-					<span class="glyphicon glyphicon-edit"></span> Edit
+				<span class="glyphicon glyphicon-edit"></span>
 				<% end %>
-			<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
