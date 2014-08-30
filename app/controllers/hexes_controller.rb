@@ -11,7 +11,11 @@ class HexesController < ApplicationController
   # GET /hexes
   # GET /hexes.json
   def index
-    @hexes = Hex.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
+    if !user_signed_in?
+      @hexes = Hex.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
+    else
+      @hexes = Hex.where(:user == current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   # GET /hexes/1
@@ -70,6 +74,6 @@ class HexesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hex_params
-      params.require(:hex).permit(:hexcode)
+      params.require(:hex).permit(:hexcode, :notes)
     end
   end

@@ -6,12 +6,14 @@
 			<div class="panel-heading colorBox" style="background-color: #<%=@hex.hexcode%>">
 			</div>
 			<div class="panel-body">
-				<p><%= @hex.hexcode %></p>
+				<strong>#<%= @hex.hexcode.upcase %></strong>
 				<% if @hex.user == current_user %>
-				<%= link_to edit_hex_path(@hex) do %>
-				<span class="glyphicon glyphicon-edit"></span>
+					<%= link_to edit_hex_path(@hex) do %>
+					<span class="glyphicon glyphicon-edit pull-right"></span>
+					<% end %>
 				<% end %>
-				<% end %>
+				<br/>
+				<%= @hex.notes %>
 			</div>
 		</div>
 	</div>

@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826221134) do
+ActiveRecord::Schema.define(version: 20140830184942) do
 
   create_table "hexes", force: true do |t|
     t.string   "hexcode"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "notes"
   end
 
   add_index "hexes", ["user_id"], name: "index_hexes_on_user_id"

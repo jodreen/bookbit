@@ -1,7 +1,7 @@
 Bookbit::Application.routes.draw do
   resources :hexes
 
-  devise_for :users
+  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
   root "hexes#index" #root_path
 
   get "about" => "pages#about" #this line creates about_path

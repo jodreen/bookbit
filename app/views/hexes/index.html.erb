@@ -9,34 +9,35 @@
     </div>
   </div>
 
-<div id="hexes" class="transitions-enabled">
-  <% @hexes.each do |hex| %>
-  <% if hex.user == current_user %>
-  <div class="box panel panel-default">
-    <div class="colorBox" style="background-color: #<%=hex.hexcode%>">
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-xs-8">
-          <%= hex.hexcode %>
+  <div id="hexes" class="transitions-enabled">
+    <% @hexes.each do |hex| %>
+    <% if hex.user == current_user %>
+    <div class="box panel panel-default">
+      <div class="colorBox" style="background-color: #<%=hex.hexcode%>">
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-8">
+            <strong>#<%= hex.hexcode.upcase %></strong>
+          </div>
+          <div class="col-xs-4 pull-right actions">
+            <%= link_to edit_hex_path(hex) do %>
+            <span class="glyphicon glyphicon-edit"></span>
+            <% end %>
+            <%= link_to hex, method: :delete, data: { confirm: ' Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+          </div>
         </div>
-        <div class="col-xs-4 pull-right actions">
-          <%= link_to edit_hex_path(hex) do %>
-          <span class="glyphicon glyphicon-edit"></span>
-          <% end %>
-          <%= link_to hex, method: :delete, data: { confirm: ' Are you sure?' } do %>
-          <span class="glyphicon glyphicon-trash"></span>
-          <% end %>
-        </div>
+        <%= hex.notes %>
       </div>
     </div>
+    <% end %>
+    <% end %>
   </div>
-  <% end %>
-  <% end %>
-</div>
 
 
   <div class="center">
     <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
   </div>
-  <% end %>
+<% end %>
