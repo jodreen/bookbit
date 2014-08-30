@@ -1,6 +1,6 @@
 #README
 
-An application to keep track of how much you read. Compete/get motivated by connecting with friends.
+An application to keep track of colors you like or are currently using.
 
 by [Jordeen Chang](http://github.com/jodreen)
 
