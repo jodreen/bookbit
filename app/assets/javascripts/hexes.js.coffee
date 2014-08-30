@@ -7,3 +7,4 @@ $ ->
 		$('#hexes').masonry
 			itemSelector: '.box'
 			isFitWtih: true
+
