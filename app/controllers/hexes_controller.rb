@@ -11,10 +11,8 @@ class HexesController < ApplicationController
   # GET /hexes
   # GET /hexes.json
   def index
-    if !user_signed_in?
-      @hexes = Hex.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
-    else
-      @hexes = Hex.where(:user == current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    if user_signed_in?
+      @hexes = current_user.hexes.order("created_at DESC")
     end
   end
 
@@ -38,7 +36,7 @@ class HexesController < ApplicationController
   def create
     @hex = current_user.hexes.build(hex_params)
     if @hex.save
-      redirect_to @hex, notice: 'Hex was successfully created.'
+      redirect_to hexes_url, notice: 'Hex was successfully added.'
     else
       render action: 'new'
     end
@@ -48,7 +46,7 @@ class HexesController < ApplicationController
   # PATCH/PUT /hexes/1.json
   def update
     if @hex.update(hex_params)
-      redirect_to @hex, notice: 'Hex was successfully updated.'
+      redirect_to hexes_url, notice: 'Hex was successfully updated.'
     else
       render action: 'edit'
     end
@@ -62,18 +60,19 @@ class HexesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hex
-      @hex = Hex.find(params[:id])
-    end
-
-    def correct_user
-      @hex = current_user.hexes.find_by(id: params[:id])
-      redirect_to hexes_path if @hex.nil?
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def hex_params
-      params.require(:hex).permit(:hexcode, :notes)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_hex
+    @hex = Hex.find(params[:id])
   end
+
+  def correct_user
+    @hex = current_user.hexes.find_by(id: params[:id])
+    redirect_to hexes_path if @hex.nil?
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def hex_params
+    params.require(:hex).permit(:hexcode, :notes)
+  end
+
+end

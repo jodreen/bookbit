@@ -23,12 +23,6 @@ ActiveRecord::Schema.define(version: 20140830184942) do
 
   add_index "hexes", ["user_id"], name: "index_hexes_on_user_id"
 
-  create_table "pins", force: true do |t|
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
